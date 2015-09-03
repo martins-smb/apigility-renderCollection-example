@@ -6,7 +6,7 @@ class ContactEntity
 
     private $ctc_id;
 
-    private $ctc_nome;
+    private $ctc_name;
     
     private $ctc_email;
 
@@ -14,7 +14,7 @@ class ContactEntity
     {
         return array(
             'ctc_id' => $this->ctc_id,
-            'ctc_nome' => $this->ctc_nome,
+            'ctc_name' => $this->ctc_name,
             'ctc_email' => $this->ctc_email
         );
     }
@@ -24,7 +24,7 @@ class ContactEntity
         foreach ($data as $key => $value) {
             if (in_array($key, array(
                 'ctc_id',
-                'ctc_nome',
+                'ctc_name',
                 'ctc_email'
             ))) {
                 $this->$key = $value;
