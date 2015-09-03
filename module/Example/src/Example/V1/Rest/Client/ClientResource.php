@@ -3,61 +3,11 @@ namespace Example\V1\Rest\Client;
 
 use ZF\ApiProblem\ApiProblem;
 use ZF\Rest\AbstractResourceListener;
-use Zend\ServiceManager\ServiceManager;
 
 class ClientResource extends AbstractResourceListener
 {
 
-    protected $serviceManager;
-
-    public function __construct(ServiceManager $serviceManager)
-    {
-        $this->serviceManager = $serviceManager;
-    }
-
-    /**
-     * Create a resource
-     *
-     * @param mixed $data            
-     * @return ApiProblem|mixed
-     */
-    public function create($data)
-    {
-        return new ApiProblem(405, 'The CREATE method has not been defined for collections');
-    }
-
-    /**
-     * Delete a resource
-     *
-     * @param mixed $id            
-     * @return ApiProblem|mixed
-     */
-    public function delete($id)
-    {
-        return new ApiProblem(405, 'The DELETE method has not been defined for collections');
-    }
-
-    /**
-     * Delete a collection, or members of a collection
-     *
-     * @param mixed $data            
-     * @return ApiProblem|mixed
-     */
-    public function deleteList($data)
-    {
-        return new ApiProblem(405, 'The DELETE method has not been defined for collections');
-    }
-
-    /**
-     * Fetch a resource
-     *
-     * @param mixed $id            
-     * @return ApiProblem|mixed
-     */
-    public function fetch($id)
-    {
-        return new ApiProblem(405, 'The GET method has not been defined for individual resources');
-    }
+    protected $repository;
 
     /**
      * Fetch all or a subset of resources
@@ -67,58 +17,17 @@ class ClientResource extends AbstractResourceListener
      */
     public function fetchAll($params = array())
     {
-        return $this->getClientService()->getClients($params);
+        return $this->getClientRepository()->findAll($params);
     }
 
-    /**
-     * Patch (partial in-place update) a resource
-     *
-     * @param mixed $id            
-     * @param mixed $data            
-     * @return ApiProblem|mixed
-     */
-    public function patch($id, $data)
+    public function getClientRepository()
     {
-        return new ApiProblem(405, 'The PATCH method has not been defined for individual resources');
+        return $this->repository;
     }
 
-    /**
-     * Replace a collection or members of a collection
-     *
-     * @param mixed $data            
-     * @return ApiProblem|mixed
-     */
-    public function replaceList($data)
+    public function setClientRepository($repository)
     {
-        return new ApiProblem(405, 'The PUT method has not been defined for collections');
-    }
-
-    public function getClientService()
-    {
-        return $this->getServiceManager()->get('Example\V1\ClientService');
-    }
-
-    /**
-     * Gets the value of serviceManager.
-     *
-     * @return mixed
-     */
-    public function getServiceManager()
-    {
-        return $this->serviceManager;
-    }
-
-    /**
-     * Sets the value of serviceManager.
-     *
-     * @param mixed $serviceManager
-     *            the service manager
-     *            
-     * @return self
-     */
-    public function setServiceManager($serviceManager)
-    {
-        $this->serviceManager = $serviceManager;
+        $this->repository = $repository;
         
         return $this;
     }

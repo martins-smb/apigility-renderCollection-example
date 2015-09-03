@@ -77,10 +77,10 @@ class Module implements ApigilityProviderInterface
     {
         return array(
             'factories' => array(
-                'Example\V1\ClientService' => 'Example\V1\Rest\Client\ClientServiceFactory',
-                'Example\V1\Rest\Client\ClientResource' => function ($sm)
+                'Example\\V1\\Rest\\Client\\ClientResource' => 'Example\\V1\\Rest\\Client\\ClientResourceFactory',
+                'Example\V1\Rest\Client\ClientResourceFactory' => function ($sm)
                 {
-                    return new \Example\V1\Rest\Client\ClientResource($sm);
+                    return new \Example\V1\Rest\Client\ClientResourceFactory($sm);
                 },
                 
                 'Example\V1\Rest\Client\ContactRepository' => function ($sm)
