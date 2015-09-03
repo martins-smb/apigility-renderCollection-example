@@ -7,19 +7,23 @@ data/db_sample_schema.sql
 ### DB Adapter Config
 config/autoload/user.global.php
 
+```
 'db' => array(
-        'driver' => 'Pdo',
-        'dsn' => 'mysql:dbname=dbname;host=localhost',
-        'username' => 'username',
-        'password' => 'password',
-        'driver_options' => array(
-            PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
-        )
-    ),
+                'driver' => 'Pdo',
+                'dsn' => 'mysql:dbname=dbname;host=localhost',
+                'username' => 'username',
+                'password' => 'password',
+                'driver_options' => array(
+                        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
+                )
+        ),
+```
 
 ### Test on the postman
+GET
 http://localhost:8080/client
 
+```
 {
     "_links": {
         "self": {
